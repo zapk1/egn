@@ -1,11 +1,11 @@
 {
-  "name": "IBR Members Payments",
-  "short_name": "IBR",
+  "name": "Black Rituals Payments",
+  "short_name": "Black Rituals Payments",
   "description": "Manage the payments and store people in Databases",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#F5E427",
-  "theme_color": "#F5E427",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
   "icons": [
     {
       "src": "https://i.postimg.cc/Yqdq10Sp/Screenshot-20251203-115809-Chat-GPT.jpg",
