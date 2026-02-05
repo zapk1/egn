@@ -1,0 +1,2512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>Illuminati Black Rituals - Premium Spiritual Products</title>
+    <link rel="icon" href__="https://i.postimg.cc/rwmPjzWr/IMG-2949.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="preconnect" href__="https://fonts.googleapis.com">
+    <link rel="preconnect" href__="https://fonts.gstatic.com" crossorigin>
+    <link href__="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+    
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .hidden { display: none !important; }
+        
+        .product-card { 
+            background: #ffffff;
+            border-radius: 12px; 
+            overflow: hidden; 
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-color: #000;
+        }
+
+        .membership-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .membership-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+            border-color: #000;
+        }
+        
+        .btn-primary { 
+            background: #000;
+            color: #fff; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary:hover { 
+            background: #333;
+            transform: translateY(-1px); 
+        }
+        
+        .btn-secondary {
+            background: #fff;
+            color: #000;
+            padding: 10px 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #000;
+        }
+        
+        .input-field { 
+            width: 100%; 
+            padding: 12px 16px; 
+            background: #fff; 
+            border: 1px solid #e5e7eb; 
+            border-radius: 8px; 
+            font-size: 14px; 
+            transition: all 0.3s; 
+            color: #000;
+        }
+        
+        .input-field:focus { 
+            outline: none; 
+            border-color: #000; 
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1); 
+        }
+        
+        textarea.input-field { 
+            min-height: 100px; 
+            resize: vertical; 
+        }
+        
+        .tab-button { 
+            padding: 10px 20px; 
+            background: #f9fafb; 
+            border: 1px solid #e5e7eb; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            margin-right: 8px; 
+            font-weight: 600;
+            color: #4b5563;
+            font-size: 14px;
+        }
+        
+        .tab-button.active { 
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: #000;
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            animation: slideIn 0.4s ease;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .toast.error { 
+            background: #dc2626;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(500px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s;
+            overflow-y: auto;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: #ffffff;
+            border: 1px solid #000;
+            border-radius: 12px;
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content.fullscreen {
+            max-width: 95vw;
+            max-height: 95vh;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-card:hover {
+            border-color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .price-tag {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: #000;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            color: #374151;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .alert-box {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .alert-box i {
+            color: #6b7280;
+        }
+        
+        .alert-box p {
+            color: #374151;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .image-gallery {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 8px 0;
+        }
+        
+        .image-gallery img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .image-gallery img:hover {
+            border-color: #000;
+            transform: scale(1.05);
+        }
+        
+        .order-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.3s;
+        }
+        
+        .order-card:hover {
+            border-color: #000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .order-card.completed {
+            background: #f0fdf4;
+            border-color: #86efac;
+        }
+
+        .bank-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 24px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bank-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .bank-card:hover::before {
+            opacity: 1;
+        }
+
+        .bank-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .bank-card.selected {
+            border-color: #fff;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .bank-card.fnb {
+            background: linear-gradient(135deg, #002855 0%, #004d99 100%);
+        }
+
+        .bank-card.tymebank {
+            background: linear-gradient(135deg, #FF6B00 0%, #FF9500 100%);
+        }
+
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            max-width: 70%;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        .message-bubble.sent {
+            background: #000;
+            color: #fff;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message-bubble.received {
+            background: #f3f4f6;
+            color: #000;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-bubble img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            min-width: 200px;
+            z-index: 50;
+            margin-top: 8px;
+        }
+
+        .dropdown-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: #f9fafb;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f3f4f6;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #9ca3af;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+
+        .chat-container {
+            height: 500px;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .image-preview-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .image-preview-item {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .image-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .image-preview-item button {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app-container">
+        <!-- Admin Panel -->
+        <div id="admin-page" class="hidden min-h-screen p-6 bg-gray-50">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-between items-center mb-10">
+                    <div>
+                        <h1 class="text-4xl font-black text-gray-900 mb-2">Admin Dashboard</h1>
+                        <p class="text-gray-600">Manage Illuminati Black Rituals Store</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <button onclick="showPage('messages')" class="btn-secondary">
+                            <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>Messages
+                        </button>
+                        <button onclick="showPage('home')" class="btn-primary">
+                            <i data-lucide="home" class="w-5 h-5 mr-2"></i>Back to Store
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Statistics Dashboard -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                    <div class="stat-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <i data-lucide="shopping-bag" class="w-8 h-8 text-gray-600"></i>
+                            <span class="text-sm text-gray-500">Total</span>
+                        </div>
+                        <div class="text-3xl font-black text-gray-900 mb-1" id="stat-products">0</div>
+                        <div class="text-gray-600 text-sm font-semibold">Products</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <i data-lucide="users" class="w-8 h-8 text-gray-600"></i>
+                            <span class="text-sm text-gray-500">Total</span>
+                        </div>
+                        <div class="text-3xl font-black text-gray-900 mb-1" id="stat-customers">0</div>
+                        <div class="text-gray-600 text-sm font-semibold">Customers</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <i data-lucide="package" class="w-8 h-8 text-gray-600"></i>
+                            <span class="text-sm text-gray-500">All Time</span>
+                        </div>
+                        <div class="text-3xl font-black text-gray-900 mb-1" id="stat-orders">0</div>
+                        <div class="text-gray-600 text-sm font-semibold">Orders</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <i data-lucide="dollar-sign" class="w-8 h-8 text-gray-600"></i>
+                            <span class="text-sm text-gray-500">Total Revenue</span>
+                        </div>
+                        <div class="text-3xl font-black text-gray-900 mb-1" id="stat-revenue">R0</div>
+                        <div class="text-gray-600 text-sm font-semibold">Revenue</div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="grid md:grid-cols-2 gap-6 mb-10">
+                    <div class="stat-card">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Orders Over Time</h3>
+                        <div style="position: relative; height: 300px;">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Product Categories</h3>
+                        <div style="position: relative; height: 300px;">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Tabs -->
+                <div class="mb-8">
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="showAdminTab('products')" id="admin-tab-products" class="tab-button active">
+                            <i data-lucide="shopping-bag" class="w-4 h-4 inline mr-2"></i>Products
+                        </button>
+                        <button onclick="showAdminTab('orders')" id="admin-tab-orders" class="tab-button">
+                            <i data-lucide="clipboard-list" class="w-4 h-4 inline mr-2"></i>Orders
+                        </button>
+                        <button onclick="showAdminTab('testimonials')" id="admin-tab-testimonials" class="tab-button">
+                            <i data-lucide="message-square" class="w-4 h-4 inline mr-2"></i>Testimonials
+                        </button>
+                        <button onclick="showAdminTab('settings')" id="admin-tab-settings" class="tab-button">
+                            <i data-lucide="settings" class="w-4 h-4 inline mr-2"></i>Settings
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Products Tab -->
+                <div id="admin-content-products" class="admin-content">
+                    <div class="stat-card p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                            <i data-lucide="plus-circle" class="w-6 h-6"></i>
+                            Add New Product
+                        </h2>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-gray-700">Product Name *</label>
+                                    <input id="new-product-name" placeholder="e.g., Black Sage Bundle" class="input-field">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-gray-700">Price (ZAR) *</label>
+                                    <input id="new-product-price" type="number" placeholder="e.g., 6500" class="input-field">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-gray-700">Category *</label>
+                                    <select id="new-product-category" class="input-field">
+                                        <option value="herbs">Sacred Herbs</option>
+                                        <option value="crystals">Crystals & Stones</option>
+                                        <option value="rituals">Ritual Kits</option>
+                                        <option value="oils">Essential Oils</option>
+                                        <option value="candles">Ritual Candles</option>
+                                        <option value="protection">Protection Items</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-gray-700">Upload Product Images *</label>
+                                    <input id="new-product-images" type="file" multiple accept="image/*" class="input-field">
+                                    <p class="text-xs text-gray-500 mt-2">You can select multiple images</p>
+                                    <div id="image-preview" class="mt-4 flex gap-2 flex-wrap"></div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-gray-700">Contact Phone *</label>
+                                    <input id="new-product-phone" placeholder="+27 XX XXX XXXX" class="input-field">
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-gray-700">Short Description *</label>
+                                    <textarea id="new-product-description" placeholder="Brief description..." class="input-field" rows="3"></textarea>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-gray-700">Full Details *</label>
+                                    <textarea id="new-product-details" placeholder="Detailed information about benefits, origin, energy properties..." class="input-field" rows="5"></textarea>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-gray-700">Usage Instructions *</label>
+                                    <textarea id="new-product-instructions" placeholder="Step by step instructions..." class="input-field" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button onclick="addProduct()" id="add-product-btn" class="btn-primary w-full py-4 text-base">
+                            <i data-lucide="plus" class="w-5 h-5 mr-2"></i>Add Product to Store
+                        </button>
+                        
+                        <div class="mt-12">
+                            <h3 class="text-xl font-bold text-gray-900 mb-6">All Products</h3>
+                            <div id="admin-products-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Tab -->
+                <div id="admin-content-orders" class="admin-content hidden">
+                    <div class="stat-card p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-8">Order Management</h2>
+                        <div id="orders-list"></div>
+                    </div>
+                </div>
+
+                <!-- Testimonials Tab -->
+                <div id="admin-content-testimonials" class="admin-content hidden">
+                    <div class="stat-card p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-8">Manage Testimonials</h2>
+                        
+                        <div class="grid md:grid-cols-2 gap-8 mb-8">
+                            <div class="space-y-4">
+                                <h3 class="text-lg font-bold">Add New Testimonial</h3>
+                                <input id="new-testimonial-name" placeholder="Customer Name" class="input-field">
+                                <input id="new-testimonial-title" placeholder="e.g., Energy Healer" class="input-field">
+                                <textarea id="new-testimonial-quote" placeholder="Testimonial text..." class="input-field" rows="4"></textarea>
+                                <input id="new-testimonial-image" type="file" accept="image/*" class="input-field">
+                                <button onclick="addTestimonial()" class="btn-primary w-full">
+                                    <i data-lucide="plus-circle" class="w-4 h-4 mr-2"></i>Add Testimonial
+                                </button>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-lg font-bold mb-4">Current Testimonials</h3>
+                                <div id="testimonials-admin-list" class="space-y-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div id="admin-content-settings" class="admin-content hidden">
+                    <div class="stat-card p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-8">Store Settings</h2>
+                        <div class="space-y-6 max-w-2xl">
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-gray-700">Store Email</label>
+                                <input id="shop-email" type="email" value="illuminatiblackrituals@gmail.com" class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-gray-700">Contact Phone</label>
+                                <input id="shop-phone" value="27810792898" class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-gray-700">Footer Text</label>
+                                <input id="footer-text" value="© 2024 Illuminati Black Rituals - Premium Spiritual Products" class="input-field">
+                            </div>
+                            <button onclick="saveSettings()" class="btn-primary w-full py-3">
+                                <i data-lucide="save" class="w-4 h-4 mr-2"></i>Save All Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Page -->
+        <div id="messages-page" class="hidden min-h-screen p-6 bg-gray-50">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex justify-between items-center mb-10">
+                    <div>
+                        <h1 class="text-4xl font-black text-gray-900 mb-2">Customer Messages</h1>
+                        <p class="text-gray-600">View and respond to customer inquiries</p>
+                    </div>
+                    <button onclick="showPage('admin')" class="btn-primary">
+                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>Back to Admin
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Conversations List -->
+                    <div class="stat-card p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-6">Conversations</h3>
+                        <div id="conversations-list" class="space-y-3"></div>
+                    </div>
+
+                    <!-- Chat Area -->
+                    <div class="md:col-span-2 stat-card p-6">
+                        <div id="no-chat-selected" class="text-center py-20">
+                            <i data-lucide="message-circle" class="w-16 h-16 text-gray-300 mx-auto mb-4"></i>
+                            <p class="text-gray-500">Select a conversation to view messages</p>
+                        </div>
+
+                        <div id="chat-area" class="hidden">
+                            <div class="mb-6 pb-4 border-b border-gray-200">
+                                <h3 class="text-lg font-bold text-gray-900" id="chat-customer-name">Customer</h3>
+                                <p class="text-sm text-gray-600" id="chat-customer-email"></p>
+                            </div>
+
+                            <div id="messages-container" class="chat-container"></div>
+
+                            <div class="flex gap-3 items-end">
+                                <div class="flex-1">
+                                    <input id="admin-message-input" placeholder="Type your response..." class="input-field mb-2" onkeypress="if(event.key==='Enter') sendAdminMessage()">
+                                    <input id="admin-message-image" type="file" accept="image/*" class="hidden" onchange="handleAdminImageSelect(event)">
+                                    <div id="admin-image-preview" class="image-preview-container"></div>
+                                </div>
+                                <button onclick="document.getElementById('admin-message-image').click()" class="btn-secondary p-3">
+                                    <i data-lucide="image" class="w-5 h-5"></i>
+                                </button>
+                                <button onclick="sendAdminMessage()" class="btn-primary p-3">
+                                    <i data-lucide="send" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home / Shop Page -->
+        <div id="home-page">
+            <!-- Navigation Header -->
+            <header class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
+                <div class="container mx-auto px-6 py-4">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.postimg.cc/rwmPjzWr/IMG-2949.png" 
+                                 alt="Logo" class="w-12 h-12 object-contain">
+                            <div>
+                                <h1 class="text-xl md:text-2xl font-black text-gray-900">ILLUMINATI BLACK RITUALS</h1>
+                                <p class="text-xs text-gray-600 uppercase tracking-wider">Premium Spiritual Products</p>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <button onclick="toggleMenu()" id="menu-button" class="btn-secondary p-2">
+                                <i data-lucide="more-vertical" class="w-6 h-6"></i>
+                            </button>
+                            <div id="dropdown-menu" class="dropdown-menu hidden">
+                                <div class="dropdown-item" onclick="openMessenger(); toggleMenu();">
+                                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                                    <span>Message Us</span>
+                                </div>
+                                <div class="dropdown-item" onclick="showAdminLogin(); toggleMenu();">
+                                    <i data-lucide="shield" class="w-5 h-5"></i>
+                                    <span>Admin Access</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <div class="bg-white py-16 border-b border-gray-200">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
+                        Ancient Wisdom<br/>
+                        <span class="text-gray-600">Modern Power</span>
+                    </h2>
+                    <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-10 leading-relaxed">
+                        Discover our exclusive collection of sacred herbs, powerful crystals, and mystical ritual kits. 
+                        Each product is carefully selected and energetically charged for maximum spiritual potency.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center">
+                                <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-bold text-gray-900">100% Authentic</div>
+                                <div class="text-gray-600 text-sm">Ethically Sourced</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center">
+                                <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-bold text-gray-900">Energetically Charged</div>
+                                <div class="text-gray-600 text-sm">Moon-Blessed</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center">
+                                <i data-lucide="lock" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-bold text-gray-900">Secure Payment</div>
+                                <div class="text-gray-600 text-sm">Bank Transfer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div class="py-16 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-black text-gray-900 mb-4">Our Sacred Collection</h2>
+                        <p class="text-gray-600">Click any product to view full details and purchase</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid"></div>
+                </div>
+            </div>
+
+            <!-- JOIN ILLUMINATI EGN Section -->
+            <div class="py-16 bg-gray-50">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-black text-gray-900 mb-4">JOIN ILLUMINATI EGN</h2>
+                        <p class="text-gray-600 text-lg">Choose your path to enlightenment and unlock exclusive benefits</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                        <!-- ADEPT Position -->
+                        <div class="membership-card h-full flex flex-col">
+                            <div class="relative">
+                                <img src="https://i.postimg.cc/vBdj3554/OIP-1.jpg" 
+                                     alt="ADEPT" class="w-full h-40 object-cover">
+                                <div class="absolute top-3 left-3 bg-black text-white text-xs font-bold uppercase px-2 py-1 rounded-full">Entry Level</div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">ADEPT Position</h3>
+                                <div class="flex items-baseline gap-2 text-gray-800 mb-4">
+                                    <i data-lucide="tag" class="w-4 h-4 text-gray-500"></i>
+                                    <span class="text-2xl font-extrabold">R700</span>
+                                    <span class="text-sm text-gray-500">Joining Fee</span>
+                                </div>
+                                <div class="space-y-3 text-sm mb-6 flex-grow">
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Access only EGN people</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Earn by members you put in the Illuminati EGN</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Monthly Income R250,000 - R300,000</span>
+                                    </div>
+                                </div>
+                                <button onclick="openMembershipCheckout('ADEPT Position', 700)" class="w-full mt-auto btn-primary py-3">
+                                    Pay R700 Joining Fee
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- ILLUMINATIUM Position -->
+                        <div class="membership-card h-full flex flex-col">
+                            <div class="relative">
+                                <img src="https://i.postimg.cc/ZK0fPwXf/OIP-2.jpg" 
+                                     alt="ILLUMINATIUM" class="w-full h-40 object-cover">
+                                <div class="absolute top-3 left-3 bg-black text-white text-xs font-bold uppercase px-2 py-1 rounded-full">Portal Manager</div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">ILLUMINATIUM Position</h3>
+                                <div class="flex items-baseline gap-2 text-gray-800 mb-4">
+                                    <i data-lucide="tag" class="w-4 h-4 text-gray-500"></i>
+                                    <span class="text-2xl font-extrabold">R1,000</span>
+                                    <span class="text-sm text-gray-500">Joining Fee</span>
+                                </div>
+                                <div class="space-y-3 text-sm mb-6 flex-grow">
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Access influencer position and EGN portals</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Earn by fetching members and creating content</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Monthly INCOME R340,000 - R710,000</span>
+                                    </div>
+                                </div>
+                                <button onclick="openMembershipCheckout('ILLUMINATIUM Position', 1000)" class="w-full mt-auto btn-primary py-3">
+                                    Pay R1,000 Joining Fee
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Influencer -->
+                        <div class="membership-card h-full flex flex-col">
+                            <div class="relative">
+                                <img src="https://i.postimg.cc/Btf11w2Y/istockphoto-2176715152-612x612.jpg" 
+                                     alt="Influencer" class="w-full h-40 object-cover">
+                                <div class="absolute top-3 left-3 bg-black text-white text-xs font-bold uppercase px-2 py-1 rounded-full">Elite Circle</div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Influencer</h3>
+                                <div class="flex items-baseline gap-2 text-gray-800 mb-4">
+                                    <i data-lucide="tag" class="w-4 h-4 text-gray-500"></i>
+                                    <span class="text-2xl font-extrabold">R1,500</span>
+                                    <span class="text-sm text-gray-500">Joining Fee</span>
+                                </div>
+                                <div class="space-y-3 text-sm mb-6 flex-grow">
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Access ceremonies and EGN benefits (cars, houses)</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Earn by introducing members and worship</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Daily R2,355,000 per worship (5x/week)</span>
+                                    </div>
+                                </div>
+                                <button onclick="openMembershipCheckout('Influencer', 1500)" class="w-full mt-auto btn-primary py-3">
+                                    Pay R1,500 Joining Fee
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Full Worshiper -->
+                        <div class="membership-card h-full flex flex-col">
+                            <div class="relative">
+                                <img src="https://i.postimg.cc/D091Pz3c/istockphoto-508068250-612x612.jpg" 
+                                     alt="Full Worshiper" class="w-full h-40 object-cover">
+                                <div class="absolute top-3 left-3 bg-black text-white text-xs font-bold uppercase px-2 py-1 rounded-full">Inner Circle</div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Full Worshiper</h3>
+                                <div class="flex items-baseline gap-2 text-gray-800 mb-4">
+                                    <i data-lucide="tag" class="w-4 h-4 text-gray-500"></i>
+                                    <span class="text-2xl font-extrabold">R10,000</span>
+                                    <span class="text-sm text-gray-500">Joining Fee</span>
+                                </div>
+                                <div class="space-y-3 text-sm mb-6 flex-grow">
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Access ceremonies management and priest position</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Earn by leading ceremonies and ordering benefits</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                        <span>Unlimited earnings above R60M weekly</span>
+                                    </div>
+                                </div>
+                                <button onclick="openMembershipCheckout('Full Worshiper', 10000)" class="w-full mt-auto btn-primary py-3">
+                                    Pay R10,000 Joining Fee
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials Section -->
+            <div class="py-16 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-black text-gray-900 mb-4">Customer Experiences</h2>
+                        <p class="text-gray-600">Real stories from our spiritual community</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="testimonials-grid"></div>
+                </div>
+            </div>
+
+            <!-- Protection Section -->
+            <div class="py-16 bg-gray-50">
+                <div class="container mx-auto px-6">
+                    <div class="max-w-4xl mx-auto stat-card p-10 text-center">
+                        <i data-lucide="shield" class="w-16 h-16 text-gray-900 mx-auto mb-6"></i>
+                        <h3 class="text-3xl font-black text-gray-900 mb-6">Spiritual Protection Guarantee</h3>
+                        <p class="text-gray-700 leading-relaxed text-lg mb-6">
+                            Every product in our collection is ethically sourced, energetically cleansed, and blessed under the full moon. 
+                            We protect your spiritual journey with ancient wards and modern security. Your privacy is sacred to us.
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            All transactions are secured through encrypted bank transfer. 
+                            Your personal information is protected with bank-level security.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="bg-white border-t border-gray-200">
+                <div class="container mx-auto px-6 py-10">
+                    <div class="grid md:grid-cols-3 gap-10 mb-8">
+                        <div>
+                            <h4 class="text-lg font-black mb-4">ILLUMINATI BLACK RITUALS</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Your trusted source for authentic spiritual products. 
+                                Serving the community with integrity and power.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-base font-bold mb-4">Contact Us</h4>
+                            <div class="space-y-3 text-gray-600 text-sm">
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="mail" class="w-4 h-4"></i>
+                                    <span id="footer-email">illuminatiblackrituals@gmail.com</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="phone" class="w-4 h-4"></i>
+                                    <span id="footer-phone">27810792898</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                    <span>Gauteng, Randburg, George AVE Street</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-base font-bold mb-4">Quick Links</h4>
+                            <div class="space-y-2 text-gray-600 text-sm">
+                                <div class="hover:text-black cursor-pointer transition">About Us</div>
+                                <div class="hover:text-black cursor-pointer transition">Shipping Info</div>
+                                <div class="hover:text-black cursor-pointer transition">Privacy Policy</div>
+                                <div class="hover:text-black cursor-pointer transition">Terms & Conditions</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 pt-8 text-center">
+                        <p id="footer-copyright" class="text-gray-500 text-sm">© 2024 Illuminati Black Rituals - Premium Spiritual Products</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Product Detail Modal (Full Screen) -->
+        <div id="product-modal" class="modal hidden" onclick="if(event.target === this) closeProductModal()">
+            <div class="modal-content fullscreen" onclick="event.stopPropagation()">
+                <div id="product-modal-content"></div>
+            </div>
+        </div>
+
+        <!-- Bank Transfer Checkout Modal -->
+        <div id="checkout-modal" class="modal hidden" onclick="if(event.target === this) closeCheckoutModal()">
+            <div class="bg-white rounded-xl p-8 max-w-3xl w-full mx-4 shadow-2xl max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-black text-gray-900">Complete Your Purchase</h2>
+                    <button onclick="closeCheckoutModal()" class="text-gray-400 hover:text-gray-600 transition">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <div id="checkout-order-summary" class="mb-8"></div>
+                
+                <div class="space-y-6 mb-8">
+                    <h3 class="text-lg font-bold text-gray-900">Your Information</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-gray-700">Full Name *</label>
+                            <input id="checkout-name" required placeholder="Your full name" class="input-field">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-gray-700">Age *</label>
+                            <input id="checkout-age" type="number" required placeholder="Your age" class="input-field">
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-gray-700">Email *</label>
+                            <input id="checkout-email" type="email" required placeholder="your@email.com" class="input-field">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-gray-700">Phone Number *</label>
+                            <input id="checkout-phone" required placeholder="+27 XX XXX XXXX" class="input-field">
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-gray-700">Location/City *</label>
+                            <input id="checkout-location" required placeholder="City name" class="input-field">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-gray-700">Township *</label>
+                            <input id="checkout-township" required placeholder="Township name" class="input-field">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2 text-gray-700">Name of Town Closer To *</label>
+                        <input id="checkout-town" required placeholder="Closest town" class="input-field">
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Select Payment Method</h3>
+                    <p class="text-sm text-gray-600 mb-4">Please make a deposit to one of the bank accounts below, then confirm your payment.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <!-- FNB Card -->
+                        <div class="bank-card fnb" onclick="selectBank('fnb')" id="bank-fnb">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="text-2xl font-black">FNB</div>
+                                <i data-lucide="check-circle" class="w-6 h-6 opacity-0" id="check-fnb"></i>
+                            </div>
+                            <div class="text-sm mb-2">Savings Account</div>
+                            <div class="text-xl font-bold tracking-wide">6311 6681 461</div>
+                            <div class="mt-4 text-xs opacity-75">First National Bank</div>
+                        </div>
+                        
+                        <!-- TymeBank Card -->
+                        <div class="bank-card tymebank" onclick="selectBank('tymebank')" id="bank-tymebank">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="text-2xl font-black">TymeBank</div>
+                                <i data-lucide="check-circle" class="w-6 h-6 opacity-0" id="check-tymebank"></i>
+                            </div>
+                            <div class="text-sm mb-2">Everyday Account</div>
+                            <div class="text-xl font-bold tracking-wide">5110 3334 333</div>
+                            <div class="mt-4 text-xs opacity-75">TymeBank Digital</div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-box">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                        <p>After making the deposit, click "I Completed Payment" below to confirm your order.</p>
+                    </div>
+                </div>
+                
+                <button onclick="confirmPayment()" id="confirm-payment-btn" class="btn-primary w-full py-4 text-base">
+                    <i data-lucide="check-circle" class="w-5 h-5 mr-2"></i>I Completed Payment
+                </button>
+            </div>
+        </div>
+
+        <!-- Messenger Modal -->
+        <div id="messenger-modal" class="modal hidden" onclick="if(event.target === this) closeMessenger()">
+            <div class="bg-white rounded-xl p-6 max-w-2xl w-full mx-4 shadow-2xl max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-black text-gray-900">Message Us</h2>
+                    <button onclick="closeMessenger()" class="text-gray-400 hover:text-gray-600 transition">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <div id="messenger-chat-area" class="hidden">
+                    <div class="chat-container" id="customer-messages-container"></div>
+                    
+                    <div class="flex gap-3 items-end">
+                        <div class="flex-1">
+                            <input id="customer-message-input" placeholder="Type your message..." class="input-field mb-2" onkeypress="if(event.key==='Enter') sendCustomerMessage()">
+                            <input id="customer-message-image" type="file" accept="image/*" class="hidden" onchange="handleCustomerImageSelect(event)">
+                            <div id="customer-image-preview" class="image-preview-container"></div>
+                        </div>
+                        <button onclick="document.getElementById('customer-message-image').click()" class="btn-secondary p-3">
+                            <i data-lucide="image" class="w-5 h-5"></i>
+                        </button>
+                        <button onclick="sendCustomerMessage()" class="btn-primary p-3">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="messenger-initial-form">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-gray-700">Your Name *</label>
+                            <input id="messenger-name" required placeholder="Your full name" class="input-field">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-gray-700">Email *</label>
+                            <input id="messenger-email" type="email" required placeholder="your@email.com" class="input-field">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-gray-700">Phone Number *</label>
+                            <input id="messenger-phone" required placeholder="+27 XX XXX XXXX" class="input-field">
+                        </div>
+                        
+                        <button onclick="startMessengerChat()" class="btn-primary w-full py-3">
+                            <i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>Start Conversation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Login Modal -->
+        <div id="admin-login-modal" class="modal hidden" onclick="if(event.target === this) closeAdminLogin()">
+            <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 shadow-2xl" onclick="event.stopPropagation()">
+                <h2 class="text-2xl font-black text-gray-900 mb-6">Admin Access</h2>
+                <input id="admin-password" type="password" placeholder="Enter admin password" class="input-field mb-6">
+                <div class="flex gap-4">
+                    <button onclick="closeAdminLogin()" class="flex-1 btn-secondary py-3">Cancel</button>
+                    <button onclick="checkAdminPassword()" class="flex-1 btn-primary py-3">Login</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="modal hidden">
+            <div class="bg-white rounded-xl p-10 max-w-lg w-full mx-4 text-center shadow-2xl">
+                <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-black">
+                    <i data-lucide="check-circle" class="w-12 h-12 text-white"></i>
+                </div>
+                <h2 class="text-3xl font-black text-gray-900 mb-4">Order Confirmed!</h2>
+                <p class="text-gray-600 mb-8">
+                    Your order has been received and will be processed within 24 hours. 
+                    Check your email for confirmation details.
+                </p>
+                <button onclick="closeSuccessModal()" class="btn-primary w-full py-3">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== FIREBASE CONFIGURATION =====
+        const firebaseConfig = {
+            apiKey: "AIzaSyDDMsvRTz9nPGDk8Ob_FPRc5Boov2FVt9w",
+            authDomain: "egn-portal.firebaseapp.com",
+            projectId: "egn-portal",
+            storageBucket: "egn-portal.firebasestorage.app",
+            messagingSenderId: "88252271549",
+            appId: "1:88252271549:web:80aa211a420e205c1720d4",
+            measurementId: "G-KYMBME9RDQ"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+        
+        // ===== DEFAULT PRODUCTS (IN ZAR) =====
+        const DEFAULT_PRODUCTS = [
+            {
+                id: 'default-1',
+                name: 'Illuminati PROTECTION Ritual Ring',
+                price: 6500,
+                category: 'protection',
+                description: 'This is protection ring that can save you from Accidents, Gunshots Danger and any bad situation set against you as the owner of the Illuminati BR protection ring.',
+                details: 'Once you wear the ring after being fully built spiritually by instruction you get introduced to the world of fully protection against weapons, fights, enemies, and accidents.',
+                instructions: 'For usage or instructions pay required amount for the ritual, we will call you and tell about the ring delivery and how to built it spiritually. We only give instructions after payments call 27810792898 for more information.',
+                images: ['https://i.postimg.cc/rpxrWCfB/images-(14).jpg'],
+                phone: '27810792898',
+                isDefault: true
+            },
+            {
+                id: 'default-2',
+                name: 'Fame & Confidence ILLUMINATI BR Ritual Necklace',
+                price: 5500,
+                category: 'rituals',
+                description: 'This is an ILLUMINATI BR Necklace built with Powerful black rituals mixed with human voice desires and invitation from ILLUMINATI WICCAN gods to grant fame and confidence.',
+                details: 'This necklace is built with Black Rituals that makes people to instantly like your work or anything you do. People will see your work and love it and you will be favoured wherever you go.',
+                instructions: 'For usage or instructions pay required amount for the ritual, we will call you and tell about the necklace delivery and how to built it spiritually. We only give instructions after payments call 27810792898 for more information.',
+                images: ['https://i.postimg.cc/d1XjvmVr/s-l1200-(1).jpg'],
+                phone: '27810792898',
+                isDefault: true
+            },
+            {
+                id: 'default-3',
+                name: 'Personal WEALTH SUCCESS Ritual',
+                price: 15000,
+                category: 'rituals',
+                description: 'This is the Ritual that can change your life and your situation mostly good for attracting wealth, commonly used around South Africa by most successful people.',
+                details: 'This ritual does not take anything related to human sacrifices or family related issues. It only requires your voice and double black candles that will be delivered to you during the ritual performance.',
+                instructions: 'For usage or instructions pay required amount for the ritual, we will call you and tell about the ritual delivery. We only give instructions after payments call 27810792898 for more information.',
+                images: ['https://i.postimg.cc/BQzJxjw4/images-(20).jpg'],
+                phone: '27810792898',
+                isDefault: true
+            },
+            {
+                id: 'default-4',
+                name: 'Coin of Luck ILLUMINATI BR Ritual',
+                price: 5500,
+                category: 'rituals',
+                description: 'This is a FULLY Ritual built Coin to attract good energy and remove bad energy on any person who carries the ILLUMINATED Coin from Black Rituals.',
+                details: 'This coin turns you to be everyones favourite. It makes all chances to be on your side with pure LUCK BUILT by Black Rituals.',
+                instructions: 'For usage or instructions pay required amount for the ritual, we will call you and tell about the coin delivery and how to built it spiritually. We only give instructions after payments call 27810792898 for more information.',
+                images: ['https://i.postimg.cc/fyVZSZZN/images-(4).jpg'],
+                phone: '27810792898',
+                isDefault: true
+            }
+        ];
+
+        // ===== DEFAULT TESTIMONIALS =====
+        const DEFAULT_TESTIMONIALS = [
+            {
+                id: 'test-1',
+                name: 'Nomsa Dlamini',
+                title: 'Energy Healer',
+                quote: 'The black sage bundle from Illuminati Black Rituals completely transformed my practice. The energy is authentic and powerful.',
+                image_url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
+                isDefault: true
+            },
+            {
+                id: 'test-2',
+                name: 'Thabo Maleka',
+                title: 'Traditional Healer',
+                quote: 'As a sangoma, I need genuine spiritual tools. Illuminati Black Rituals provides authentic products that carry real power.',
+                image_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+                isDefault: true
+            },
+            {
+                id: 'test-3',
+                name: 'Sarah van Rensburg',
+                title: 'Spiritual Coach',
+                quote: 'The full moon ritual kit is absolutely incredible! I have performed the ceremony three times and manifested everything I asked for.',
+                image_url: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80',
+                isDefault: true
+            },
+            {
+                id: 'test-4',
+                name: 'Marcus Johnson',
+                title: 'Yoga Instructor',
+                quote: 'I use the dragon blood oil before every class to protect the space. Students always comment on how safe and peaceful the energy feels.',
+                image_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
+                isDefault: true
+            },
+            {
+                id: 'test-5',
+                name: 'Zanele Khumalo',
+                title: 'Meditation Teacher',
+                quote: 'The ancestral communication candle helped me finally connect with my grandmother who passed. I felt her presence so strongly.',
+                image_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80',
+                isDefault: true
+            }
+        ];
+        
+        // ===== APPLICATION STATE =====
+        let AppState = {
+            currentPage: 'home',
+            selectedProduct: null,
+            selectedBank: null,
+            currentConversation: null,
+            customerData: null,
+            products: [],
+            testimonials: [],
+            orders: [],
+            conversations: [],
+            pendingImages: [],
+            settings: {
+                shop_email: "illuminatiblackrituals@gmail.com",
+                shop_phone: "27810792898",
+                footer_text: "© 2024 Illuminati Black Rituals - Premium Spiritual Products"
+            },
+            stats: {
+                products: 0,
+                customers: 0,
+                orders: 0,
+                revenue: 0
+            }
+        };
+        
+        // ===== INIT CHARTS =====
+        let salesChart, categoryChart;
+        
+        function initCharts() {
+            const salesCtx = document.getElementById('salesChart');
+            const categoryCtx = document.getElementById('categoryChart');
+            
+            if (salesChart) salesChart.destroy();
+            if (categoryChart) categoryChart.destroy();
+            
+            if (salesCtx) {
+                const monthlyData = calculateMonthlyOrders();
+                salesChart = new Chart(salesCtx, {
+                    type: 'line',
+                    data: {
+                        labels: monthlyData.labels,
+                        datasets: [{
+                            label: 'Orders',
+                            data: monthlyData.data,
+                            borderColor: '#000',
+                            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { labels: { color: '#000', font: { weight: 'bold' } } }
+                        },
+                        scales: {
+                            y: { ticks: { color: '#666' }, grid: { color: '#e5e7eb' } },
+                            x: { ticks: { color: '#666' }, grid: { color: '#e5e7eb' } }
+                        }
+                    }
+                });
+            }
+            
+            if (categoryCtx) {
+                const categoryData = calculateCategoryData();
+                categoryChart = new Chart(categoryCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: categoryData.labels,
+                        datasets: [{
+                            data: categoryData.data,
+                            backgroundColor: ['#000', '#333', '#666', '#999', '#bbb', '#ddd']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { labels: { color: '#000', font: { weight: 'bold' } } }
+                        }
+                    }
+                });
+            }
+        }
+        
+        function calculateMonthlyOrders() {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+            const data = [0, 0, 0, 0, 0, 0];
+            
+            AppState.orders.forEach(order => {
+                if (order.timestamp) {
+                    const date = order.timestamp.toDate ? order.timestamp.toDate() : new Date(order.timestamp);
+                    const month = date.getMonth();
+                    if (month < 6) data[month]++;
+                }
+            });
+            
+            return { labels: months, data: data };
+        }
+        
+        function calculateCategoryData() {
+            const categories = {};
+            AppState.products.forEach(p => {
+                categories[p.category] = (categories[p.category] || 0) + 1;
+            });
+            return {
+                labels: Object.keys(categories),
+                data: Object.values(categories)
+            };
+        }
+        
+        // ===== FIREBASE STORAGE UPLOAD =====
+        async function uploadImagesToStorage(files) {
+            const uploadPromises = Array.from(files).map(async (file) => {
+                const timestamp = Date.now();
+                const filename = `products/${timestamp}_${file.name}`;
+                const storageRef = storage.ref(filename);
+                
+                await storageRef.put(file);
+                const url = await storageRef.getDownloadURL();
+                return url;
+            });
+            
+            return await Promise.all(uploadPromises);
+        }
+        
+        async function uploadSingleImage(file) {
+            const timestamp = Date.now();
+            const filename = `images/${timestamp}_${file.name}`;
+            const storageRef = storage.ref(filename);
+            
+            await storageRef.put(file);
+            return await storageRef.getDownloadURL();
+        }
+        
+        // ===== FIREBASE FUNCTIONS =====
+        async function loadProductsFromFirebase() {
+            try {
+                const snapshot = await db.collection('products').orderBy('created_at', 'desc').get();
+                const firebaseProducts = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                    isDefault: false
+                }));
+                
+                AppState.products = [...DEFAULT_PRODUCTS, ...firebaseProducts];
+                AppState.stats.products = AppState.products.length;
+                updateStats();
+                displayProducts();
+                displayAdminProducts();
+            } catch (error) {
+                console.error('Error loading products:', error);
+                AppState.products = DEFAULT_PRODUCTS;
+                AppState.stats.products = DEFAULT_PRODUCTS.length;
+                displayProducts();
+            }
+        }
+
+        async function loadTestimonialsFromFirebase() {
+            try {
+                const snapshot = await db.collection('testimonials').orderBy('created_at', 'desc').get();
+                const firebaseTestimonials = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                    isDefault: false
+                }));
+                
+                AppState.testimonials = [...DEFAULT_TESTIMONIALS, ...firebaseTestimonials];
+                displayTestimonials();
+                displayAdminTestimonials();
+            } catch (error) {
+                console.error('Error loading testimonials:', error);
+                AppState.testimonials = DEFAULT_TESTIMONIALS;
+                displayTestimonials();
+            }
+        }
+        
+        async function loadOrdersFromFirebase() {
+            try {
+                const snapshot = await db.collection('orders').orderBy('timestamp', 'desc').get();
+                AppState.orders = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                
+                const uniqueCustomers = new Set(AppState.orders.map(o => o.email)).size;
+                const totalRevenue = AppState.orders
+                    .filter(o => o.status === 'completed' || o.status === 'pending')
+                    .reduce((sum, o) => sum + parseFloat(o.amount_zar || 0), 0);
+                
+                AppState.stats.customers = uniqueCustomers;
+                AppState.stats.orders = AppState.orders.length;
+                AppState.stats.revenue = totalRevenue;
+                
+                updateStats();
+                displayOrders();
+                
+                if (salesChart || categoryChart) {
+                    initCharts();
+                }
+            } catch (error) {
+                console.error('Error loading orders:', error);
+            }
+        }
+
+        async function loadConversations() {
+            try {
+                const snapshot = await db.collection('messages').orderBy('timestamp', 'desc').get();
+                const allMessages = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                
+                // Group by email
+                const grouped = {};
+                allMessages.forEach(msg => {
+                    const key = msg.email;
+                    if (!grouped[key]) {
+                        grouped[key] = {
+                            email: msg.email,
+                            name: msg.name,
+                            phone: msg.phone,
+                            messages: [],
+                            lastMessage: msg.timestamp
+                        };
+                    }
+                    grouped[key].messages.push(msg);
+                });
+                
+                AppState.conversations = Object.values(grouped).sort((a, b) => 
+                    (b.lastMessage?.toDate ? b.lastMessage.toDate() : new Date(b.lastMessage)) - 
+                    (a.lastMessage?.toDate ? a.lastMessage.toDate() : new Date(a.lastMessage))
+                );
+                
+                displayConversations();
+            } catch (error) {
+                console.error('Error loading conversations:', error);
+            }
+        }
+
+        function displayConversations() {
+            const list = document.getElementById('conversations-list');
+            if (!list) return;
+            
+            if (AppState.conversations.length === 0) {
+                list.innerHTML = '<p class="text-gray-500 text-center py-8 text-sm">No messages yet</p>';
+                return;
+            }
+            
+            list.innerHTML = AppState.conversations.map(conv => `
+                <div onclick="openConversation('${conv.email}')" class="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 border border-gray-200 hover:border-black cursor-pointer transition">
+                    <div class="font-bold text-gray-900 text-sm">${conv.name}</div>
+                    <div class="text-xs text-gray-600 mt-1">${conv.email}</div>
+                    <div class="text-xs text-gray-500 mt-1">${conv.messages.length} message(s)</div>
+                </div>
+            `).join('');
+        }
+
+        function openConversation(email) {
+            const conv = AppState.conversations.find(c => c.email === email);
+            if (!conv) return;
+            
+            AppState.currentConversation = conv;
+            document.getElementById('no-chat-selected').classList.add('hidden');
+            document.getElementById('chat-area').classList.remove('hidden');
+            document.getElementById('chat-customer-name').textContent = conv.name;
+            document.getElementById('chat-customer-email').textContent = conv.email;
+            
+            displayMessages(conv.messages, 'messages-container');
+        }
+
+        function displayMessages(messages, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = messages.map(msg => {
+                const imageHtml = msg.image_url ? `<img src="${msg.image_url}" alt="Attachment">` : '';
+                return `
+                    <div class="message-bubble ${msg.is_admin ? 'sent' : 'received'}">
+                        <div class="text-sm">${msg.message || ''}</div>
+                        ${imageHtml}
+                        <div class="text-xs opacity-70 mt-1">${msg.timestamp ? new Date(msg.timestamp.toDate ? msg.timestamp.toDate() : msg.timestamp).toLocaleString() : ''}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            container.scrollTop = container.scrollHeight;
+        }
+
+        let adminPendingImage = null;
+
+        function handleAdminImageSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            adminPendingImage = file;
+            const preview = document.getElementById('admin-image-preview');
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = `
+                    <div class="image-preview-item">
+                        <img src="${e.target.result}" alt="Preview">
+                        <button onclick="adminPendingImage = null; document.getElementById('admin-image-preview').innerHTML = ''; document.getElementById('admin-message-image').value = '';">×</button>
+                    </div>
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function sendAdminMessage() {
+            const input = document.getElementById('admin-message-input');
+            const text = input.value.trim();
+            if ((!text && !adminPendingImage) || !AppState.currentConversation) return;
+            
+            try {
+                let imageUrl = null;
+                if (adminPendingImage) {
+                    imageUrl = await uploadSingleImage(adminPendingImage);
+                }
+
+                await db.collection('messages').add({
+                    email: AppState.currentConversation.email,
+                    name: AppState.currentConversation.name,
+                    phone: AppState.currentConversation.phone,
+                    message: text,
+                    image_url: imageUrl,
+                    is_admin: true,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                input.value = '';
+                adminPendingImage = null;
+                document.getElementById('admin-image-preview').innerHTML = '';
+                document.getElementById('admin-message-image').value = '';
+                await loadConversations();
+                openConversation(AppState.currentConversation.email);
+                showToast('✅ Message sent!');
+            } catch (error) {
+                console.error('Error sending message:', error);
+                showToast('❌ Failed to send', 'error');
+            }
+        }
+
+        async function addProduct() {
+            const name = document.getElementById('new-product-name').value.trim();
+            const price = parseFloat(document.getElementById('new-product-price').value);
+            const category = document.getElementById('new-product-category').value;
+            const description = document.getElementById('new-product-description').value.trim();
+            const details = document.getElementById('new-product-details').value.trim();
+            const instructions = document.getElementById('new-product-instructions').value.trim();
+            const imageFiles = document.getElementById('new-product-images').files;
+            const phone = document.getElementById('new-product-phone').value.trim();
+            
+            if (!name || !price || !description || !details || !instructions || !phone) {
+                showToast('Please fill all required fields', 'error');
+                return;
+            }
+            
+            if (imageFiles.length === 0) {
+                showToast('Please upload at least one image', 'error');
+                return;
+            }
+            
+            const btn = document.getElementById('add-product-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader" class="w-5 h-5 inline mr-2 animate-spin"></i>Uploading...';
+            lucide.createIcons();
+            
+            try {
+                const imageUrls = await uploadImagesToStorage(imageFiles);
+                
+                const productData = {
+                    name, price, category, description, details, instructions, phone,
+                    images: imageUrls,
+                    created_at: firebase.firestore.FieldValue.serverTimestamp()
+                };
+                
+                await db.collection('products').add(productData);
+                
+                document.getElementById('new-product-name').value = '';
+                document.getElementById('new-product-price').value = '';
+                document.getElementById('new-product-description').value = '';
+                document.getElementById('new-product-details').value = '';
+                document.getElementById('new-product-instructions').value = '';
+                document.getElementById('new-product-images').value = '';
+                document.getElementById('new-product-phone').value = '';
+                document.getElementById('image-preview').innerHTML = '';
+                
+                showToast('✅ Product added successfully!');
+                await loadProductsFromFirebase();
+            } catch (error) {
+                console.error('Error adding product:', error);
+                showToast('❌ Failed to add product', 'error');
+            }
+            
+            btn.disabled = false;
+            btn.innerHTML = '<i data-lucide="plus" class="w-5 h-5 mr-2"></i>Add Product to Store';
+            lucide.createIcons();
+        }
+        
+        document.getElementById('new-product-images').addEventListener('change', function(e) {
+            const preview = document.getElementById('image-preview');
+            preview.innerHTML = '';
+            
+            Array.from(e.target.files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.className = 'w-20 h-20 object-cover rounded-lg border border-gray-300';
+                    preview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        async function deleteProduct(id, isDefault) {
+            if (isDefault) {
+                showToast('❌ Cannot delete default products', 'error');
+                return;
+            }
+            
+            if (!confirm('Delete this product permanently?')) return;
+            
+            try {
+                await db.collection('products').doc(id).delete();
+                showToast('✅ Product deleted!');
+                await loadProductsFromFirebase();
+            } catch (error) {
+                console.error('Error deleting product:', error);
+                showToast('❌ Failed to delete', 'error');
+            }
+        }
+
+        async function addTestimonial() {
+            const name = document.getElementById('new-testimonial-name').value.trim();
+            const title = document.getElementById('new-testimonial-title').value.trim();
+            const quote = document.getElementById('new-testimonial-quote').value.trim();
+            const imageFile = document.getElementById('new-testimonial-image').files[0];
+            
+            if (!name || !title || !quote) {
+                showToast('Please fill all fields', 'error');
+                return;
+            }
+            
+            try {
+                let imageUrl = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80';
+                
+                if (imageFile) {
+                    imageUrl = await uploadSingleImage(imageFile);
+                }
+                
+                const testimonialData = {
+                    name, title, quote, image_url: imageUrl,
+                    created_at: firebase.firestore.FieldValue.serverTimestamp()
+                };
+                
+                await db.collection('testimonials').add(testimonialData);
+                
+                document.getElementById('new-testimonial-name').value = '';
+                document.getElementById('new-testimonial-title').value = '';
+                document.getElementById('new-testimonial-quote').value = '';
+                document.getElementById('new-testimonial-image').value = '';
+                
+                showToast('✅ Testimonial added!');
+                await loadTestimonialsFromFirebase();
+            } catch (error) {
+                console.error('Error adding testimonial:', error);
+                showToast('❌ Failed to add', 'error');
+            }
+        }
+
+        async function deleteTestimonial(id, isDefault) {
+            if (isDefault) {
+                showToast('❌ Cannot delete default testimonials', 'error');
+                return;
+            }
+            
+            if (!confirm('Delete this testimonial?')) return;
+            
+            try {
+                await db.collection('testimonials').doc(id).delete();
+                showToast('✅ Testimonial deleted!');
+                await loadTestimonialsFromFirebase();
+            } catch (error) {
+                console.error('Error deleting:', error);
+                showToast('❌ Failed to delete', 'error');
+            }
+        }
+        
+        async function markOrderCompleted(orderId) {
+            try {
+                await db.collection('orders').doc(orderId).update({
+                    status: 'completed',
+                    completed_at: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                showToast('✅ Order marked as completed!');
+                await loadOrdersFromFirebase();
+            } catch (error) {
+                console.error('Error updating order:', error);
+                showToast('❌ Failed to update order', 'error');
+            }
+        }
+
+        function displayProducts() {
+            const grid = document.getElementById('products-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = AppState.products.map(product => {
+                const mainImage = product.images ? product.images[0] : product.image_url;
+                return `
+                    <div class="product-card" onclick='showProductDetails(${JSON.stringify(product).replace(/'/g, "&#39;")})'>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="${mainImage}" alt="${product.name}" 
+                                 class="w-full h-full object-cover">
+                            <span class="badge absolute top-3 left-3">${product.category}</span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2 leading-tight">${product.name}</h3>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">${product.description}</p>
+                            
+                            <div class="alert-box">
+                                <i data-lucide="info" class="w-4 h-4 flex-shrink-0"></i>
+                                <p class="text-xs">Pay to get full instructions & ritual items. Call after payment.</p>
+                            </div>
+                            
+                            <div class="flex items-center justify-between mt-4">
+                                <span class="price-tag">R${product.price}</span>
+                            </div>
+                            
+                            <button onclick='event.stopPropagation(); openCheckout(${JSON.stringify(product).replace(/'/g, "&#39;")})' class="btn-primary w-full mt-4 py-2 text-sm">
+                                <i data-lucide="shopping-cart" class="w-4 h-4 mr-2"></i>Buy Now
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            lucide.createIcons();
+        }
+
+        function showProductDetails(product) {
+            AppState.selectedProduct = product;
+            const modal = document.getElementById('product-modal');
+            const content = document.getElementById('product-modal-content');
+            
+            const images = product.images || [product.image_url];
+            
+            content.innerHTML = `
+                <div class="p-8">
+                    <button onclick="closeProductModal()" class="float-right text-gray-400 hover:text-gray-600 mb-4">
+                        <i data-lucide="x" class="w-8 h-8"></i>
+                    </button>
+                    <div class="grid md:grid-cols-2 gap-8 clear-both">
+                        <div>
+                            <img src="${images[0]}" id="main-product-image" alt="${product.name}" 
+                                 class="w-full h-96 object-cover rounded-xl mb-4">
+                            ${images.length > 1 ? `
+                                <div class="image-gallery">
+                                    ${images.map((img, idx) => `
+                                        <img src="${img}" onclick="document.getElementById('main-product-image').src='${img}'" 
+                                             alt="View ${idx + 1}">
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="overflow-y-auto max-h-[70vh] pr-4">
+                            <span class="badge mb-4">${product.category}</span>
+                            <h2 class="text-3xl font-black text-gray-900 mb-4">${product.name}</h2>
+                            <div class="price-tag mb-6">R${product.price}</div>
+                            
+                            ${product.phone ? `
+                            <div class="mb-6 p-4 rounded-lg bg-gray-50 border border-gray-200">
+                                <div class="flex items-center gap-3 text-gray-900">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                    <span class="font-bold">Contact: ${product.phone}</span>
+                                </div>
+                            </div>
+                            ` : ''}
+                            
+                            <div class="alert-box mb-6">
+                                <i data-lucide="lock" class="w-6 h-6"></i>
+                                <div>
+                                    <p class="font-bold mb-1">Full Instructions After Payment</p>
+                                    <p class="text-xs">Complete your purchase to receive detailed ritual instructions via call.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                                        <i data-lucide="info" class="w-5 h-5"></i>
+                                        Product Description
+                                    </h3>
+                                    <p class="text-gray-700 leading-relaxed">${product.details || product.description}</p>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                                        Basic Usage Guide
+                                    </h3>
+                                    <p class="text-gray-700 leading-relaxed">${product.instructions}</p>
+                                </div>
+                            </div>
+                            
+                            <button onclick='openCheckout(${JSON.stringify(product).replace(/'/g, "&#39;")})' class="btn-primary w-full mt-6 py-4 text-base">
+                                <i data-lucide="shopping-cart" class="w-5 h-5 mr-2"></i>Buy Now - R${product.price}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        function displayAdminProducts() {
+            const list = document.getElementById('admin-products-list');
+            if (!list) return;
+            
+            list.innerHTML = AppState.products.length === 0 
+                ? '<p class="text-gray-500 col-span-full text-center py-12">No products yet.</p>'
+                : AppState.products.map(p => {
+                    const mainImage = p.images ? p.images[0] : p.image_url;
+                    return `
+                        <div class="stat-card p-5">
+                            <img src="${mainImage}" class="w-full h-40 object-cover rounded-lg mb-4">
+                            ${p.images && p.images.length > 1 ? `<p class="text-xs text-gray-500 mb-2">${p.images.length} images</p>` : ''}
+                            <h4 class="font-bold text-gray-900 mb-2">${p.name}</h4>
+                            <p class="text-black font-bold text-lg mb-2">R${p.price}</p>
+                            <span class="badge text-xs">${p.category}</span>
+                            ${!p.isDefault ? `
+                                <button onclick="deleteProduct('${p.id}', false)" class="w-full mt-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-bold transition text-sm">
+                                    <i data-lucide="trash-2" class="w-4 h-4 inline mr-2"></i>Delete
+                                </button>
+                            ` : '<p class="text-xs text-gray-500 mt-4 text-center">Default Product</p>'}
+                        </div>
+                    `;
+                }).join('');
+            
+            lucide.createIcons();
+        }
+        
+        function displayOrders() {
+            const list = document.getElementById('orders-list');
+            if (!list) return;
+            
+            if (AppState.orders.length === 0) {
+                list.innerHTML = '<p class="text-gray-500 text-center py-12">No orders yet.</p>';
+                return;
+            }
+            
+            list.innerHTML = AppState.orders.map(order => {
+                const isCompleted = order.status === 'completed';
+                const date = order.timestamp ? (order.timestamp.toDate ? order.timestamp.toDate() : new Date(order.timestamp)) : new Date();
+                
+                return `
+                    <div class="order-card ${isCompleted ? 'completed' : ''}">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900 mb-1">${order.product_name || 'Product'}</h4>
+                                <p class="text-sm text-gray-600">Order ID: ${order.id}</p>
+                                <p class="text-xs text-gray-500">${date.toLocaleString()}</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-black">R${parseFloat(order.amount_zar || 0).toFixed(2)}</div>
+                                <span class="inline-block px-3 py-1 rounded-full text-xs font-bold mt-2 ${
+                                    isCompleted ? 'bg-green-100 text-green-800 border border-green-300' : 
+                                    'bg-yellow-100 text-yellow-800 border border-yellow-300'
+                                }">
+                                    ${isCompleted ? 'COMPLETED' : 'PENDING'}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-4 text-sm">
+                            <div>
+                                <p class="text-gray-600 mb-1"><strong>Customer:</strong> ${order.name || 'N/A'}</p>
+                                <p class="text-gray-600 mb-1"><strong>Email:</strong> ${order.email || 'N/A'}</p>
+                                <p class="text-gray-600 mb-1"><strong>Phone:</strong> ${order.phone || 'N/A'}</p>
+                                <p class="text-gray-600"><strong>Age:</strong> ${order.age || 'N/A'}</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-600 mb-1"><strong>Location:</strong> ${order.location || 'N/A'}</p>
+                                <p class="text-gray-600 mb-1"><strong>Township:</strong> ${order.township || 'N/A'}</p>
+                                <p class="text-gray-600 mb-1"><strong>Town:</strong> ${order.town || 'N/A'}</p>
+                                <p class="text-gray-600"><strong>Bank:</strong> ${order.bank || 'N/A'}</p>
+                            </div>
+                        </div>
+                        
+                        ${!isCompleted ? `
+                            <button onclick="markOrderCompleted('${order.id}')" class="btn-primary w-full py-2 text-sm">
+                                <i data-lucide="check-square" class="w-4 h-4 mr-2"></i>Mark as Completed
+                            </button>
+                        ` : `
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                                <i data-lucide="check-circle" class="w-6 h-6 inline mr-2 text-green-600"></i>
+                                <span class="font-bold text-green-800">Order Fulfilled</span>
+                            </div>
+                        `}
+                    </div>
+                `;
+            }).join('');
+            
+            lucide.createIcons();
+        }
+
+        function displayTestimonials() {
+            const grid = document.getElementById('testimonials-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = AppState.testimonials.map(t => `
+                <div class="stat-card p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="${t.image_url}" alt="${t.name}" 
+                             class="w-14 h-14 rounded-full object-cover border-2 border-black">
+                        <div>
+                            <div class="font-bold text-gray-900">${t.name}</div>
+                            <div class="text-gray-600 text-sm font-semibold">${t.title}</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic leading-relaxed">"${t.quote}"</p>
+                </div>
+            `).join('');
+        }
+
+        function displayAdminTestimonials() {
+            const list = document.getElementById('testimonials-admin-list');
+            if (!list) return;
+            
+            const firebaseOnly = AppState.testimonials.filter(t => !t.isDefault);
+            list.innerHTML = firebaseOnly.length === 0 
+                ? '<p class="text-gray-500 text-center py-8 text-sm">No custom testimonials yet.</p>'
+                : firebaseOnly.map(t => `
+                    <div class="stat-card p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <img src="${t.image_url}" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <div class="font-bold text-gray-900 text-sm">${t.name}</div>
+                                <div class="text-gray-600 text-xs">${t.title}</div>
+                            </div>
+                        </div>
+                        <button onclick="deleteTestimonial('${t.id}', false)" class="btn-secondary px-3 py-2 text-sm">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `).join('');
+            
+            lucide.createIcons();
+        }
+
+        function updateStats() {
+            document.getElementById('stat-products').textContent = AppState.stats.products;
+            document.getElementById('stat-customers').textContent = AppState.stats.customers;
+            document.getElementById('stat-orders').textContent = AppState.stats.orders;
+            document.getElementById('stat-revenue').textContent = 'R' + AppState.stats.revenue.toLocaleString();
+        }
+
+        // ===== BANK TRANSFER CHECKOUT =====
+        function openCheckout(product) {
+            AppState.selectedProduct = product;
+            closeProductModal();
+            
+            const summary = document.getElementById('checkout-order-summary');
+            const mainImage = product.images ? product.images[0] : product.image_url;
+            
+            summary.innerHTML = `
+                <div class="flex gap-6 p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <img src="${mainImage}" class="w-32 h-32 object-cover rounded-lg">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-900 text-xl mb-2">${product.name}</h3>
+                        <p class="text-gray-600 mb-3">${product.description}</p>
+                        <div class="price-tag">R${product.price}</div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('checkout-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function openMembershipCheckout(membershipName, price) {
+            const membershipProduct = {
+                id: 'membership-' + membershipName.toLowerCase().replace(/\s+/g, '-'),
+                name: membershipName,
+                price: price,
+                category: 'membership',
+                description: 'Join the Illuminati EGN and unlock exclusive benefits',
+                images: ['https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d179b3a460005e70e6ffea/c7c0219f9_IlluminatiEyewithSouthAfricanFlag.png']
+            };
+            
+            openCheckout(membershipProduct);
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+            AppState.selectedBank = null;
+            document.querySelectorAll('.bank-card').forEach(card => {
+                card.classList.remove('selected');
+                card.querySelector('i').style.opacity = '0';
+            });
+        }
+
+        function selectBank(bank) {
+            AppState.selectedBank = bank;
+            
+            document.querySelectorAll('.bank-card').forEach(card => {
+                card.classList.remove('selected');
+                card.querySelector('i').style.opacity = '0';
+            });
+            
+            document.getElementById('bank-' + bank).classList.add('selected');
+            document.getElementById('check-' + bank).style.opacity = '1';
+            lucide.createIcons();
+        }
+
+        async function confirmPayment() {
+            const name = document.getElementById('checkout-name').value.trim();
+            const age = document.getElementById('checkout-age').value.trim();
+            const email = document.getElementById('checkout-email').value.trim();
+            const phone = document.getElementById('checkout-phone').value.trim();
+            const location = document.getElementById('checkout-location').value.trim();
+            const township = document.getElementById('checkout-township').value.trim();
+            const town = document.getElementById('checkout-town').value.trim();
+            
+            if (!name || !age || !email || !phone || !location || !township || !town) {
+                showToast('Please fill all required fields', 'error');
+                return;
+            }
+            
+            if (!AppState.selectedBank) {
+                showToast('Please select a payment method', 'error');
+                return;
+            }
+            
+            const btn = document.getElementById('confirm-payment-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader" class="w-5 h-5 mr-2 animate-spin"></i>Processing...';
+            lucide.createIcons();
+            
+            try {
+                const orderData = {
+                    name,
+                    age,
+                    email,
+                    phone,
+                    location,
+                    township,
+                    town,
+                    bank: AppState.selectedBank.toUpperCase(),
+                    product_name: AppState.selectedProduct.name,
+                    product_id: AppState.selectedProduct.id,
+                    amount_zar: AppState.selectedProduct.price,
+                    status: 'pending',
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    type: AppState.selectedProduct.category === 'membership' ? 'membership' : 'product'
+                };
+                
+                await db.collection('orders').add(orderData);
+                
+                // Send notification to admin
+                sendNotificationToAdmin(orderData);
+                
+                // Send confirmation emails (Note: Requires backend email service)
+                sendOrderConfirmationEmail(orderData);
+                
+                closeCheckoutModal();
+                document.getElementById('success-modal').classList.remove('hidden');
+                lucide.createIcons();
+                
+                await loadOrdersFromFirebase();
+            } catch (error) {
+                console.error('Error confirming payment:', error);
+                showToast('❌ Failed to confirm payment', 'error');
+            }
+            
+            btn.disabled = false;
+            btn.innerHTML = '<i data-lucide="check-circle" class="w-5 h-5 mr-2"></i>I Completed Payment';
+            lucide.createIcons();
+        }
+
+        function sendNotificationToAdmin(orderData) {
+            // Browser notification
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification('New Order Received!', {
+                    body: `${orderData.name} placed an order for ${orderData.product_name} - R${orderData.amount_zar}`,
+                    icon: 'https://i.postimg.cc/rwmPjzWr/IMG-2949.png',
+                    badge: 'https://i.postimg.cc/rwmPjzWr/IMG-2949.png',
+                    tag: 'order-notification'
+                });
+            } else if ('Notification' in window && Notification.permission !== 'denied') {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        new Notification('New Order Received!', {
+                            body: `${orderData.name} placed an order for ${orderData.product_name}`,
+                            icon: 'https://i.postimg.cc/rwmPjzWr/IMG-2949.png'
+                        });
+                    }
+                });
+            }
+            
+            // Show toast as fallback
+            showToast(`✅ New order from ${orderData.name}!`);
+        }
+
+        function sendOrderConfirmationEmail(orderData) {
+            // This would require a backend email service
+            // For now, we'll log the email data
+            console.log('Email confirmation would be sent to:', orderData.email);
+            console.log('Admin notification email would be sent to: illuminatiegn@gmail.com');
+            
+            // You can integrate with services like:
+            // - Firebase Functions with SendGrid
+            // - Mailgun API
+            // - Or any email service API
+        }
+
+        // ===== MESSENGER SYSTEM =====
+        function toggleMenu() {
+            const menu = document.getElementById('dropdown-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('dropdown-menu');
+            const button = document.getElementById('menu-button');
+            if (!menu.contains(event.target) && !button.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+
+        function openMessenger() {
+            document.getElementById('messenger-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeMessenger() {
+            document.getElementById('messenger-modal').classList.add('hidden');
+            document.getElementById('messenger-initial-form').classList.remove('hidden');
+            document.getElementById('messenger-chat-area').classList.add('hidden');
+            AppState.customerData = null;
+        }
+
+        async function startMessengerChat() {
+            const name = document.getElementById('messenger-name').value.trim();
+            const email = document.getElementById('messenger-email').value.trim();
+            const phone = document.getElementById('messenger-phone').value.trim();
+            
+            if (!name || !email || !phone) {
+                showToast('Please fill all fields', 'error');
+                return;
+            }
+            
+            AppState.customerData = { name, email, phone };
+            
+            // Load existing conversation
+            try {
+                const snapshot = await db.collection('messages')
+                    .where('email', '==', email)
+                    .orderBy('timestamp', 'asc')
+                    .get();
+                
+                const messages = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                
+                displayMessages(messages, 'customer-messages-container');
+            } catch (error) {
+                console.error('Error loading conversation:', error);
+            }
+            
+            document.getElementById('messenger-initial-form').classList.add('hidden');
+            document.getElementById('messenger-chat-area').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        let customerPendingImage = null;
+
+        function handleCustomerImageSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            customerPendingImage = file;
+            const preview = document.getElementById('customer-image-preview');
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = `
+                    <div class="image-preview-item">
+                        <img src="${e.target.result}" alt="Preview">
+                        <button onclick="customerPendingImage = null; document.getElementById('customer-image-preview').innerHTML = ''; document.getElementById('customer-message-image').value = '';">×</button>
+                    </div>
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function sendCustomerMessage() {
+            const input = document.getElementById('customer-message-input');
+            const text = input.value.trim();
+            if ((!text && !customerPendingImage) || !AppState.customerData) return;
+            
+            try {
+                let imageUrl = null;
+                if (customerPendingImage) {
+                    imageUrl = await uploadSingleImage(customerPendingImage);
+                }
+
+                await db.collection('messages').add({
+                    email: AppState.customerData.email,
+                    name: AppState.customerData.name,
+                    phone: AppState.customerData.phone,
+                    message: text,
+                    image_url: imageUrl,
+                    is_admin: false,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                input.value = '';
+                customerPendingImage = null;
+                document.getElementById('customer-image-preview').innerHTML = '';
+                document.getElementById('customer-message-image').value = '';
+                
+                // Reload conversation
+                const snapshot = await db.collection('messages')
+                    .where('email', '==', AppState.customerData.email)
+                    .orderBy('timestamp', 'asc')
+                    .get();
+                
+                const messages = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                
+                displayMessages(messages, 'customer-messages-container');
+                showToast('✅ Message sent!');
+            } catch (error) {
+                console.error('Error sending message:', error);
+                showToast('❌ Failed to send', 'error');
+            }
+        }
+
+        // ===== UTILITY FUNCTIONS =====
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = 'toast' + (type === 'error' ? ' error' : '');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('#app-container > div').forEach(p => p.classList.add('hidden'));
+            document.getElementById(pageId + '-page').classList.remove('hidden');
+            AppState.currentPage = pageId;
+            
+            if (pageId === 'admin') {
+                setTimeout(() => initCharts(), 100);
+            }
+            
+            if (pageId === 'messages') {
+                loadConversations();
+            }
+            
+            lucide.createIcons();
+        }
+
+        function showAdminLogin() {
+            document.getElementById('admin-login-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('admin-login-modal').classList.add('hidden');
+            document.getElementById('admin-password').value = '';
+        }
+
+        async function checkAdminPassword() {
+            const password = document.getElementById('admin-password').value;
+            if (password === 'VNAXXTTM') {
+                closeAdminLogin();
+                showPage('admin');
+                showAdminTab('products');
+                await loadProductsFromFirebase();
+                await loadTestimonialsFromFirebase();
+                await loadOrdersFromFirebase();
+                initCharts();
+            } else {
+                showToast('❌ Invalid password', 'error');
+            }
+        }
+
+        function showAdminTab(tabId) {
+            document.querySelectorAll('.admin-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.tab-button').forEach(t => t.classList.remove('active'));
+            document.getElementById('admin-content-' + tabId).classList.remove('hidden');
+            document.getElementById('admin-tab-' + tabId).classList.add('active');
+            lucide.createIcons();
+        }
+
+        function saveSettings() {
+            AppState.settings.shop_email = document.getElementById('shop-email').value;
+            AppState.settings.shop_phone = document.getElementById('shop-phone').value;
+            AppState.settings.footer_text = document.getElementById('footer-text').value;
+            
+            document.getElementById('footer-copyright').textContent = AppState.settings.footer_text;
+            document.getElementById('footer-email').textContent = AppState.settings.shop_email;
+            document.getElementById('footer-phone').textContent = AppState.settings.shop_phone;
+            
+            localStorage.setItem('shop_settings', JSON.stringify(AppState.settings));
+            showToast('✅ Settings saved successfully!');
+        }
+
+        window.addEventListener('load', async function() {
+            const savedSettings = localStorage.getItem('shop_settings');
+            if (savedSettings) {
+                AppState.settings = {...AppState.settings, ...JSON.parse(savedSettings)};
+                document.getElementById('footer-copyright').textContent = AppState.settings.footer_text;
+                document.getElementById('footer-email').textContent = AppState.settings.shop_email;
+                document.getElementById('footer-phone').textContent = AppState.settings.shop_phone;
+            }
+            
+            // Request notification permission
+            if ('Notification' in window && Notification.permission === 'default') {
+                Notification.requestPermission();
+            }
+            
+            await loadProductsFromFirebase();
+            await loadTestimonialsFromFirebase();
+            await loadOrdersFromFirebase();
+            lucide.createIcons();
+        });
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            showPage('home');
+        }
+        
+        lucide.createIcons();
+    </script>
+</body>
+</html>
